@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const product_1 = require("../models/product");
-const token_verification_1 = require("./token_verification");
+const token_verification_1 = require("./token-verification");
 const store = new product_1.ProductStore();
 async function index(req, res) {
     try {

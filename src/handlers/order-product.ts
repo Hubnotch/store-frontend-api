@@ -16,7 +16,6 @@ const addProduct = async (_req: Request, res: Response) => {
   }
 }
 
-
 const order_product_routes = (app: express.Application) => {
   app.post('/orders/:id/products', addProduct)
 }
