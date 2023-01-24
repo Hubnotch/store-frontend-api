@@ -1,27 +1,26 @@
-import { Order, OrderStore } from "../models/order";
-import express, { Request, Response } from 'express'
-import { verifyToken } from "./token_verification";
+import client from "../database";
 
-const store = new OrderStore()
-
-
-async function getCurrentOrder(req: Request, res: Response) {
-  const id = req.params.user_id
-  const order: Order = await store.currentUserOrder(parseInt(id))
-  res.json(order)
+export type Order = {
+  id?: number,
+  user_id: number,
+  date: string,
+  status: string
 }
 
+export class OrderStore {
+  async currentUserOrder(user_id: number): Promise<Order> {
+    const conn = await client.connect()
+    const sql = 'select * from orders where user_id=($1) and status=\'active\''
+    const result = await conn.query(sql, [user_id])
+    conn.release()
+    return result.rows[0]
+  }
 
-async function getCompletedOrder(req: Request, res: Response) {
-  const id = req.params.user_id
-  const orders: Order[] = await store.completedUserOrders(parseInt(id))
-  res.json(orders)
+  async completedUserOrders(user_id: number): Promise<Order[]> {
+    const conn = await client.connect()
+    const sql = 'select * from orders where user_id=($1) and status=\'completed\''
+    const result = await conn.query(sql, [user_id])
+    conn.release()
+    return result.rows
+  }
 }
-
-
-const order_routes = (app: express.Application) => {
-  app.get('/orders/active/:user_id', verifyToken, getCurrentOrder)
-  app.get('/orders/completed/:user_id', verifyToken, getCompletedOrder)
-}
-
-export default order_routes
