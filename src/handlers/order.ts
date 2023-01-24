@@ -1,6 +1,6 @@
 import { Order, OrderStore } from "../models/order";
 import express, { Request, Response } from 'express'
-import { verifyToken } from "./token_verification";
+import { verifyToken } from "./token-verification";
 
 const store = new OrderStore()
 

@@ -1,6 +1,6 @@
 import { UserStore, User } from "../models/user";
 import express, { Request, Response } from "express";
-import { verifyToken } from "./token_verification";
+import { verifyToken } from "./token-verification";
 import jwt from 'jsonwebtoken'
 
 const store = new UserStore()
