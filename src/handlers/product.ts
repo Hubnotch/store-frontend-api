@@ -4,7 +4,6 @@ import { verifyToken } from "./token-verification"
 
 const store = new ProductStore()
 
-
 async function index(req: Request, res: Response) {
   try {
     const products = await store.index()
@@ -26,7 +25,6 @@ async function show(req: Request, res: Response) {
 
 }
 
-
 async function create(req: Request, res: Response) {
   try {
     const product: Product = req.body
@@ -37,7 +35,6 @@ async function create(req: Request, res: Response) {
   }
 
 }
-
 
 async function topFivePopular(_req: Request, res: Response) {
   try {
