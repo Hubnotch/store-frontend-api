@@ -9,7 +9,8 @@ const {
   POSTGRES_TEST_DB,
   POSTGRES_USER,
   POSTGRES_PASSWORD,
-  ENV
+  ENV,
+  PORT
 } = process.env
 
 let client: Pool = new Pool()
@@ -17,6 +18,7 @@ let client: Pool = new Pool()
 if (ENV === 'dev') {
   client = new Pool({
     host: POSTGRES_HOST,
+    port: PORT as unknown as number,
     database: POSTGRES_DB,
     user: POSTGRES_USER,
     password: POSTGRES_PASSWORD
@@ -26,6 +28,7 @@ if (ENV === 'dev') {
 if (ENV === 'test') {
   client = new Pool({
     host: POSTGRES_HOST,
+    port: PORT as unknown as number,
     database: POSTGRES_TEST_DB,
     user: POSTGRES_USER,
     password: POSTGRES_PASSWORD
