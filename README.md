@@ -121,6 +121,7 @@ Create a 'database.json' file at the root of the project and update the values m
   "dev": {
     "driver": "pg",
     "host": "127.0.0.1",
+    "port":"5432",
     "database": "storefront",
     "user": "full_stack_user",
     "password": "password123"
@@ -128,6 +129,7 @@ Create a 'database.json' file at the root of the project and update the values m
   "test": {
     "driver": "pg",
     "host": "127.0.0.1",
+    "port":"5432",
     "database": "storefront_test",
     "user": "full_stack_user",
     "password": "password123"
